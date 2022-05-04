@@ -1,0 +1,1 @@
+add_library(square-and-multiply square-and-multiply.cpp)

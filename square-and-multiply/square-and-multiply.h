@@ -1,0 +1,1 @@
+int square_and_multiply(int base, int power, int mod);
