@@ -7,3 +7,4 @@ set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 add_subdirectory(square-and-multiply)
 add_subdirectory(tests)
+add_subdirectory(list)
