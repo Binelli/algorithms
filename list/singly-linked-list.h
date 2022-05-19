@@ -6,7 +6,7 @@ struct Node {
     int data;
     
     explicit Node(int data) : Node(nullptr, data) {}
-    Node(Node *head, int data) : next(head), data(data) {}
+    Node(Node *next, int data) : next(next), data(data) {}
 };
 
 class SinglyLinkedList
@@ -18,7 +18,9 @@ public:
     ~SinglyLinkedList();
 
     void insert(int data);
+    void insertSorted(int data);
     Node* front();
+    Node* find(int data);
 };
 
 #endif
