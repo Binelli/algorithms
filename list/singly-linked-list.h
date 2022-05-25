@@ -21,6 +21,10 @@ public:
     void insertSorted(int data);
     Node* front();
     Node* find(int data);
+    void remove(Node* node);
+    void circularInsert(int data);
+    Node* circularFind(int data);
+    void circularRemove(Node* node);
 };
 
 #endif

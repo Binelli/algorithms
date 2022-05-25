@@ -40,3 +40,68 @@ TEST(SinglyLinkedListTest, FindTest) {
     EXPECT_EQ(list.find(20)->data, 20);
     EXPECT_EQ(list.find(50), nullptr);
 }
+
+TEST(SinglyLinkedListTest, RemoveTest) {
+    SinglyLinkedList list;
+    list.insert(10);
+    list.insert(20);
+    list.remove(list.find(20));
+    EXPECT_EQ(list.find(20), nullptr);
+    list.insert(30);
+    list.insert(40);
+    list.remove(list.find(30));
+    EXPECT_EQ(list.find(30), nullptr);
+    list.remove(list.find(10));
+    EXPECT_EQ(list.find(10), nullptr);
+    list.remove(nullptr);
+
+    SinglyLinkedList list2;
+    list2.insert(10);
+    list2.insert(20);
+
+    list.remove(list2.find(20));
+    EXPECT_EQ(list.find(10), nullptr);
+}
+
+TEST(SinglyLinkedListTest, CircularInsertTest) {
+    SinglyLinkedList list;
+    list.circularInsert(10);
+    EXPECT_EQ(list.find(10)->next->data, 10);
+
+    list.circularInsert(20);
+    EXPECT_EQ(list.find(20)->next->data, 10);
+
+    list.circularInsert(30);
+    EXPECT_EQ(list.find(30)->next->data, 20);
+}
+
+TEST(SinglyLinkedListTest, CircularFindText) {
+    SinglyLinkedList list;
+    EXPECT_EQ(list.circularFind(10), nullptr);
+
+    list.circularInsert(10);
+    EXPECT_EQ(list.circularFind(10)->data, 10);
+    EXPECT_EQ(list.circularFind(20), nullptr);
+
+    list.circularInsert(20);
+    list.circularInsert(30);
+    EXPECT_EQ(list.circularFind(30)->data, 30);
+    EXPECT_EQ(list.circularFind(20)->data, 20);
+    EXPECT_EQ(list.circularFind(40), nullptr);
+}
+
+TEST(SinglyLinkedListTest, CircularRemoveTest) {
+    SinglyLinkedList list;
+    list.circularInsert(10);
+    list.circularRemove(list.circularFind(10));
+    EXPECT_EQ(list.front(), nullptr);
+
+    list.circularInsert(10);
+    list.circularInsert(20);
+    list.circularInsert(30);
+    list.circularRemove(list.circularFind(30));
+    EXPECT_EQ(list.front()->data, 20);
+
+    list.circularRemove(list.circularFind(10));
+    EXPECT_EQ(list.front()->data, 20);
+}
