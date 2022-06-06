@@ -1,1 +1,1 @@
-add_library(lists singly-linked-list.cpp)
+add_library(lists singly-linked-list.cpp doubly-linked-list.cpp)

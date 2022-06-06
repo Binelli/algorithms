@@ -11,6 +11,7 @@ struct Node {
 
 class SinglyLinkedList
 {
+private:
     Node* head;
 
 public:

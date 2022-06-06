@@ -1,5 +1,6 @@
 #include "square-and-multiply.h"
 #include "singly-linked-list.h"
+#include "doubly-linked-list.h"
 #include <gtest/gtest.h>
 
 TEST(SquareAndMultiplyTest, OperationTest) {
@@ -104,4 +105,33 @@ TEST(SinglyLinkedListTest, CircularRemoveTest) {
 
     list.circularRemove(list.circularFind(10));
     EXPECT_EQ(list.front()->data, 20);
+}
+
+TEST(DoublyLinkedListTest, CircularInsertTest) {
+    DoublyLinkedList list;
+    EXPECT_EQ(list.front(), nullptr);
+
+    list.insert(10);
+    EXPECT_EQ(list.front()->data, 10);
+
+    list.insert(20);
+    EXPECT_EQ(list.front()->data, 20);
+
+    list.insert(30);
+    EXPECT_EQ(list.front()->data, 30);
+}
+
+TEST(DoublyLinkedListTest, CircularFindTest) {
+    DoublyLinkedList list;
+    EXPECT_EQ(list.find(10), nullptr);
+
+    list.insert(50);
+    list.insert(20);
+    list.insert(10);
+    list.insert(5);
+
+    EXPECT_EQ(list.find(50)->data, 50);
+    EXPECT_EQ(list.find(10)->data, 10);
+    EXPECT_EQ(list.find(5)->data, 5);
+    EXPECT_EQ(list.find(30), nullptr);
 }
