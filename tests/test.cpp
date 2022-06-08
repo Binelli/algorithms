@@ -107,7 +107,43 @@ TEST(SinglyLinkedListTest, CircularRemoveTest) {
     EXPECT_EQ(list.front()->data, 20);
 }
 
-TEST(DoublyLinkedListTest, CircularInsertTest) {
+TEST(SinglyLinkedListTest, MidPoint) {
+    SinglyLinkedList list;
+    EXPECT_EQ(list.mid(), nullptr);
+
+    list.insert(10);
+    EXPECT_EQ(list.mid()->data, 10);
+
+    list.insert(20);
+    EXPECT_EQ(list.mid()->data, 20);
+
+    list.insert(30);
+    list.insert(40);
+    list.insert(50);
+    list.insert(60);
+    list.insert(70);
+    EXPECT_EQ(list.mid()->data, 40);
+}
+
+TEST(SinglyLinkedListTest, KthFromTheEnd) {
+    SinglyLinkedList list;
+
+    list.insert(10);
+    list.insert(20);
+    list.insert(30);
+    list.insert(40);
+    list.insert(50);
+    list.insert(60);
+    list.insert(70);
+
+    EXPECT_EQ(list.kthFromTheEnd(0)->data, 10);
+    EXPECT_EQ(list.kthFromTheEnd(2)->data, 30);
+    EXPECT_EQ(list.kthFromTheEnd(5)->data, 60);
+    EXPECT_EQ(list.kthFromTheEnd(6)->data, 70);
+    EXPECT_EQ(list.kthFromTheEnd(7)->data, 70);
+}
+
+TEST(DoublyLinkedListTest, CircularDLLInsertTest) {
     DoublyLinkedList list;
     EXPECT_EQ(list.front(), nullptr);
 
@@ -121,7 +157,7 @@ TEST(DoublyLinkedListTest, CircularInsertTest) {
     EXPECT_EQ(list.front()->data, 30);
 }
 
-TEST(DoublyLinkedListTest, CircularFindTest) {
+TEST(DoublyLinkedListTest, CircularDLLFindTest) {
     DoublyLinkedList list;
     EXPECT_EQ(list.find(10), nullptr);
 
@@ -134,4 +170,19 @@ TEST(DoublyLinkedListTest, CircularFindTest) {
     EXPECT_EQ(list.find(10)->data, 10);
     EXPECT_EQ(list.find(5)->data, 5);
     EXPECT_EQ(list.find(30), nullptr);
+}
+
+TEST(DoublyLinkedListTest, CircularDLLRemoveTest) {
+    DoublyLinkedList list;
+    list.insert(50);
+    list.remove(list.find(50));
+    EXPECT_EQ(list.front(), nullptr);
+
+    list.insert(50);
+    list.insert(20);
+    list.insert(10);
+    list.insert(5);
+
+    list.remove(list.find(10));
+    EXPECT_EQ(list.find(10), nullptr);
 }

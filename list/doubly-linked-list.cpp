@@ -52,3 +52,26 @@ DLLNode* DoublyLinkedList::find(int value)
     }
     return current;
 }
+
+void DoublyLinkedList::remove(DLLNode* node)
+{
+    if (head->next == head)
+    {
+        if (head == node)
+        {
+            delete head;
+            head = nullptr;
+        }
+        return;
+    }
+
+    node->prev->next = node->next;
+    node->next->prev = node->prev;
+
+    if (head == node)
+    {
+        head = node->next;
+    }
+
+    delete node;
+}

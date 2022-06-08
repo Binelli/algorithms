@@ -130,3 +130,39 @@ void SinglyLinkedList::circularRemove(Node* target)
     }
     delete next;
 }
+
+Node* SinglyLinkedList::mid()
+{
+    if (head == nullptr)
+    {
+        return nullptr;
+    }
+
+    Node* slow = head;
+    Node* fast = head;
+
+    while (fast->next != nullptr && fast->next->next != nullptr)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
+Node* SinglyLinkedList::kthFromTheEnd(int k)
+{
+    Node* slow = head;
+    Node* fast = head;
+    while (fast != nullptr && k-- > 0)
+    {
+        fast = fast->next;
+    }
+
+    while (fast != nullptr && fast->next != nullptr)
+    {
+        fast = fast->next;
+        slow = slow->next;
+    }
+    return slow;
+}

@@ -22,6 +22,7 @@ public:
     DLLNode* insert(int data);
     DLLNode* front();
     DLLNode* find(int value);
+    void remove(DLLNode* node);
 };
 
 #endif

@@ -26,6 +26,8 @@ public:
     void circularInsert(int data);
     Node* circularFind(int data);
     void circularRemove(Node* node);
+    Node* mid();
+    Node* kthFromTheEnd(int k);
 };
 
 #endif
